@@ -3,8 +3,8 @@ import React from 'react'
 export default () => (
   <div className="has-text-centered">
     <section class="hero is-dark">
-      <div className="container">
-        <h1 className="title">Project Page</h1>
+      <div style={{ padding: 24, minHeight: 360, overflowX: 'auto' }}>
+        <h1 className="title">Lagrange</h1>
       </div>
     </section>
   </div>
