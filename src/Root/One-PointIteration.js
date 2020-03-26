@@ -3,6 +3,8 @@ import { Button, Input } from 'antd';
 import { Table ,Card } from 'antd';
 import { compile } from 'mathjs';
 import { LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip} from 'recharts';
+import api from '../api';
+
 var dataInTable=[];
 const columns = [
     {
@@ -35,6 +37,19 @@ class OnePointIteration extends Component {
     };
     this.handleChange = this.handleChange.bind(this);
   }
+
+  componentDidMount = async () => {
+    await api.getMovieById("5e7b935670b62d1904e39ba3").then(db => {
+        this.setState({
+            fx: db.data.data.fx
+        });
+        this.setState({
+          x0: (parseFloat(db.data.data.x0))
+        });
+        
+    });
+    
+  };
 
   handleChange(event) {
     this.setState({ [event.target.name]: event.target.value });
@@ -71,7 +86,7 @@ one_point(x0) {
     return (
       <div className="has-text-centered">
         <section class="hero is-danger">
-          <div className="container">
+          <div style={{ padding: 24, minHeight: 360, overflowX: 'auto' }}>
             <form>
               <h1 className="title">One-Point Iteration</h1><br/>
               <p>F(x): <Input name="fx" size="large" style={{width: 300}} type="text" value={this.state.fx} onChange={this.handleChange} /></p>
@@ -82,9 +97,9 @@ one_point(x0) {
                     {this.state.showH && <h1 className="title">Graph of One-Point Iteration</h1>}
                     <br/>
                     {this.state.showGraph && <Card
-                        style={{ width: 1200, height: 400, border: "1px solid black", background: "#f44aaa6", color: "#6A5ACD" }}
+                        style={{ border: "1px solid black", background: "#f44aaa6", color: "#6A5ACD" }}
                     >
-                        <LineChart width={1100} height={350} data={dataInTable}>
+                        <LineChart width={700} height={350} data={dataInTable}>
                             <Line type="monotone " dataKey="err" stroke="#CD5C5C" />
                             <CartesianGrid stroke="#ccc" strokeDasharray="5 5" />
                             <XAxis dataKey="iteration" />
@@ -98,7 +113,7 @@ one_point(x0) {
                     <br/>
                     {this.state.showTable &&
                         <Table
-                        style={{ width: 1200}}columns={columns} dataSource={dataInTable} pagination={{ pageSize: 10 }} scroll={{ y: 300 }} />
+                        style={{ width: 800}}columns={columns} dataSource={dataInTable} pagination={{ pageSize: 10 }} scroll={{ y: 300 }} />
                     }
           </div>
         </section>
