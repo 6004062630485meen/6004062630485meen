@@ -47,7 +47,7 @@ class BWh2 extends Component {
     return (
       <div className="has-text-centered">
         <section class="hero is-danger">
-          <div className="container">
+          <div style={{ padding: 24, minHeight: 360, overflowX: 'auto' }}>
             <form>
               <h1 className="title">BW O(h<sup>2</sup>)</h1><br/>
               <p>F(x): <Input name="fx" size="large" style={{width: 300}} type="text" value={this.state.fx} onChange={this.handleChange} /></p>
@@ -58,19 +58,17 @@ class BWh2 extends Component {
             <br/><br/>
                     {this.state.showH && 
                       <div className="site-card-wrapper" style={{ padding: 24, minHeight: 360, overflowX: 'auto' }}>
-                        <Row gutter={16}>
-                          <Col span={6}></Col>
-                          <Col span={6}>
+                        <Row justify="center" gutter={16}>
+                          <Col span={12}>
                             <Card title="f'(x)" bordered={false}>
-                              {this.y}
+                              {(this.y).toFixed(6)}
                             </Card>
                           </Col>
-                          <Col span={6}>
+                          <Col span={12}>
                             <Card title="Error" bordered={false}>
-                              {this.error}
+                              {(this.error).toFixed(6)}
                             </Card>
                           </Col>
-                          <Col span={6}></Col>
                         </Row>
                       </div>
                     }
