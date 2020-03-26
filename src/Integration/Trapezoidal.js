@@ -48,7 +48,7 @@ class Trapezoidal extends Component {
     return (
       <div className="has-text-centered">
         <section class="hero is-warning">
-          <div className="container">
+          <div style={{ padding: 24, minHeight: 360, overflowX: 'auto' }}>
             <form>
               <h1 className="title">Composite Trapezoidal Rule</h1><br/>
               <p>F(x): <Input name="fx" size="large" style={{width: 300}} type="text" value={this.state.fx} onChange={this.handleChange} /></p>
@@ -59,15 +59,13 @@ class Trapezoidal extends Component {
             </form>
             <br/><br/>
                     {this.state.showH && 
-                      <div className="site-card-wrapper" style={{ padding: 24, minHeight: 360, overflowX: 'auto' }}>
-                        <Row gutter={16}>
-                          <Col span={8}></Col>
-                          <Col span={8}>
+                      <div className="site-card-wrapper">
+                        <Row justify="center">
+                          <Col span={24}>
                             <Card title="I" bordered={false}>
-                              {this.result}
+                              {(this.result).toFixed(6)}
                             </Card>
                           </Col>
-                          <Col span={8}></Col>
                         </Row>
                       </div>
                     }
