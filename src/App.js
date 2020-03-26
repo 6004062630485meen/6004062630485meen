@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import { Layout, Menu, Icon } from 'antd';
+import { Menu, Icon } from 'antd';
 import Routing from './routes'
 import { NavLink } from 'react-router-dom';
-
-const { Header, Sider } = Layout;
+import { Layout } from 'antd';
+const { Header, Footer, Sider, Content } = Layout;
 const { SubMenu } = Menu;
 
 class App extends Component {
@@ -134,8 +134,20 @@ class App extends Component {
             </SubMenu>
           </Menu>
         </Sider>
-        <Layout><Routing /></Layout>
+          <Layout style={{ padding: '0 24px 24px' }}>
+            <Content
+              className="site-layout-background"
+              style={{
+                padding: 24,
+                margin: 0,
+                minHeight: 280,
+              }}
+            >
+              <Routing />
+            </Content>
+          </Layout>
         </Layout>
+          <Footer style={{ textAlign: 'center' }}>KMUTNB ©2020 Created by Wasinee Jittrivas</Footer>
       </Layout>
     );
   }
